@@ -21,12 +21,14 @@ public class WhatsappController {
 
     //Autowire will not work in this case, no need to change this and add autowire
     WhatsappService whatsappService = new WhatsappService();
+    private HashMap<Object, Object> dB;
 
     @PostMapping("/add-user")
-    public String createUser(String name, String mobile) throws Exception {
+    public String createUser(@RequestParam("name") String name, @RequestParam("mobile")String mobile) throws Exception {
         //If the mobile number exists in database, throw "User already exists" exception
         //Otherwise, create the user and return "SUCCESS"
-
+        User createUser =new User(name,mobile);
+       // if(!dB.containsKey(name,mobile));
         return whatsappService.createUser(name, mobile);
     }
 

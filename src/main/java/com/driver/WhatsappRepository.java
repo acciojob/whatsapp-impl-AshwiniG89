@@ -1,7 +1,9 @@
 package com.driver;
 
+import java.lang.annotation.Retention;
 import java.util.*;
 
+import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -26,4 +28,14 @@ public class WhatsappRepository {
         this.customGroupCount = 0;
         this.messageId = 0;
     }
+    Map<String,String> dB = new HashMap<>();
+
+    public String createUser(User user){
+       String newUser = user.getMobile();
+       dB.put(newUser, String.valueOf(user));
+
+       return "Added Successfully";
+    }
+
+
 }
